@@ -20,9 +20,7 @@ const SignUp = () => {
     }
   };
   
-      const handleSubmit = () =>{
-    window.location.replace("/")
-    } 
+      
  
 
   return (
@@ -48,7 +46,7 @@ const SignUp = () => {
           onChange={e => setPasswordConfirmation(e.target.value)}
         />
         <Button variant="contained" color="primary" className="spaceb" onClick={handleSignUp}>Sign Up</Button>
-        <Button className="spaceb" variant="contained" color="primary" onClick={handleSubmit} >HomePage</Button>
+        
       </form>
     </Sign>
   );
