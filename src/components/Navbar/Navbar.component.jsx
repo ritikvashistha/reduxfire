@@ -7,13 +7,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
+//import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { deepOrange } from "@material-ui/core/colors";
-import Button from '@material-ui/core/Button';
-import styled from 'styled-components'
+import Button from "@material-ui/core/Button";
+import styled from "styled-components";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -31,14 +31,13 @@ const useStyles = makeStyles((theme) => ({
   },
   sidebar: {
     // backgroundColor: "red",
-    textTransform:"capitalize",
-    fontFamily:"cursive",
+    textTransform: "capitalize",
+    fontFamily: "cursive",
     "&:hover": {
       backgroundColor: deepOrange[200],
     },
   },
 }));
-
 
 const Navbar = ({ currentUser }) => {
   const classes = useStyles();
@@ -50,80 +49,76 @@ const Navbar = ({ currentUser }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  
-  return (
 
-       <NavWrapper className={classes.root}>
+  return (
+    <NavWrapper className={classes.root}>
       <AppBar className={classes.roots}>
         <Toolbar variant="dense" className="font">
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+          > */}
+          <MenuIcon
+            aria-controls="simple-menu"
+            aria-haspopup="true"
+            onClick={handleClick}
+          />
+
+          <Menu
+            className={classes.menu}
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
           >
-            <MenuIcon
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-              onClick={handleClick}
-            />
-
-            <Menu
-              className={classes.menu}
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              {" "}
+            {" "}
+            <MenuItem onClick={handleClose} className={classes.sidebar}>
+              <NavLink className="link" to="/homepage">
+                Home page
+              </NavLink>
+            </MenuItem>
+            <MenuItem onClick={handleClose} className={classes.sidebar}>
+              <NavLink to="/imagespage">Images Page</NavLink>
+            </MenuItem>
+            <MenuItem onClick={handleClose} className={classes.sidebar}>
+              <NavLink to="/postspage">Posts Page</NavLink>
+            </MenuItem>
+            {currentUser && currentUser ? (
               <MenuItem onClick={handleClose} className={classes.sidebar}>
-                <NavLink className="link" to="/homepage">Home page</NavLink>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => auth.signOut()}
+                >
+                  Sign out
+                </Button>
               </MenuItem>
-              <MenuItem onClick={handleClose} className={classes.sidebar}>
-                <NavLink to="/imagespage">Images Page</NavLink>
-              </MenuItem>
-              <MenuItem onClick={handleClose} className={classes.sidebar}>
-                <NavLink to="/postspage">Posts Page</NavLink>
-              </MenuItem>
-
-              {currentUser && currentUser ? (
-           <>
-               <MenuItem onClick={handleClose} className={classes.sidebar}>
-                 <Button variant="contained" color="primary" onClick={() => auth.signOut()}>Sign out</Button>
-              </MenuItem>
-               
-             </>
-           ) : (
-             <>
-               {" "}
-               <MenuItem onClick={handleClose} className={classes.sidebar}>
-                <NavLink to="/sign-in">Sign In</NavLink>
-              </MenuItem>
-               <MenuItem onClick={handleClose} className={classes.sidebar}>
-                <NavLink to="/sign-up">Sign Up</NavLink>
-              </MenuItem>
-
-
-               
-             </>
-           )}
-            </Menu>
-          </IconButton>
+            ) : (
+              <div>
+                <MenuItem onClick={handleClose} className={classes.sidebar}>
+                  <NavLink to="/sign-in">Sign In</NavLink>
+                </MenuItem>
+                <MenuItem onClick={handleClose} className={classes.sidebar}>
+                  <NavLink to="/sign-up">Sign Up</NavLink>
+                </MenuItem>
+              </div>
+            )}
+          </Menu>
+          {/* </IconButton> */}
           <Typography variant="h6" color="inherit">
             Photos
           </Typography>
         </Toolbar>
       </AppBar>
     </NavWrapper>
-  
-
 
     // <div className="navbar">
     //   <div className="navbar__logo"></div>
     //   <div className="navbar__links">
     //     <ul>
-          
 
     //       <li>
     //         <NavLink to="/homepage">homepage</NavLink>
@@ -167,9 +162,9 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, null)(Navbar);
 
 const NavWrapper = styled.div`
-text-transform:capitalize;
-font-family:cursive;
-.link{
-  text-transform:capitalize;
-}
+  text-transform: capitalize;
+  font-family: cursive;
+  .link {
+    text-transform: capitalize;
+  }
 `;
