@@ -3,6 +3,7 @@ import { auth } from "../../configs/firebase.config";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router-dom";
+import { TextField } from "@material-ui/core";
 const SignUp = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,27 +28,36 @@ const SignUp = (props) => {
     <Sign className="sign-up">
       <h1 className="heading">Sign Up page</h1>
       <form>
-        <input
+        <TextField
+          id="outlined-basic"
+          variant="outlined"
           className="space"
           type="text"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <input
+        <br></br>
+        <TextField
+          id="outlined-basic"
+          variant="outlined"
           className="space"
           type="password"
           placeholder="Password should be of atleast 8 digits"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input
+        <br></br>
+        <TextField
+          id="outlined-basic"
+          variant="outlined"
           className="space"
           type="password"
           placeholder="Password Confirmation"
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
+        <br></br>
         <Button
           variant="contained"
           color="primary"
@@ -65,16 +75,18 @@ export default withRouter(SignUp);
 
 const Sign = styled.div`
   margin-top: 100px;
+  display: block;
+  text-align: center;
   .heading {
     font-size: 50px;
     color: green;
   }
   .space {
-    margin-left: 50px;
     width: 300px;
-    height: 25px;
+
+    margin-top: 15px;
   }
   .spaceb {
-    margin-left: 50px;
+    margin-top: 20px;
   }
 `;

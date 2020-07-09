@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
     margin: 32,
     marginLeft: -23,
   },
+  spaceicon: {
+    marginLeft: 9,
+  },
   sidebar: {
     // backgroundColor: "red",
     textTransform: "capitalize",
@@ -108,8 +111,12 @@ const Navbar = ({ currentUser }) => {
             )}
           </Menu>
           {/* </IconButton> */}
-          <Typography variant="h6" color="inherit">
-            Photos
+          <Typography
+            className={classes.spaceicon}
+            variant="h6"
+            color="inherit"
+          >
+            Technical Assignment
           </Typography>
         </Toolbar>
       </AppBar>

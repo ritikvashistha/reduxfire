@@ -53,6 +53,7 @@ export default function PostsPage() {
 const PostWrapper = styled.div`
   margin-top: 54px;
   .postdiv {
+    margin-top: 5px;
     width: 90%;
     text-transform: capitalize;
   }
